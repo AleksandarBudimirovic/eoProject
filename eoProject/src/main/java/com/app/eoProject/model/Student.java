@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
+
 @Entity
 @Table(name = "student")
 public class Student {
@@ -34,18 +36,33 @@ public class Student {
 	
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
 	private Set<Document> documents = new HashSet<Document>();
+	
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
+	private Set<ExamInstance> examInstance = new HashSet<ExamInstance>();
 
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
+	//@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<Payment> payments = new HashSet<Payment>();
+	
+	
 	public Student() {
 		super();
 	}
 
-	public Student(Long id, String firstName, String lastName, Set<Document> documents) {
+	
+
+	public Student(Long id, String firstName, String lastName, Set<Document> documents, Set<ExamInstance> examInstance,
+			Set<Payment> payments) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.documents = documents;
+		this.examInstance = examInstance;
+		this.payments = payments;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -77,6 +94,22 @@ public class Student {
 
 	public void setDocuments(Set<Document> documents) {
 		this.documents = documents;
+	}
+
+	public Set<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(Set<Payment> payments) {
+		this.payments = payments;
+	}
+
+	public Set<ExamInstance> getExamInstance() {
+		return examInstance;
+	}
+
+	public void setExamInstance(Set<ExamInstance> examInstance) {
+		this.examInstance = examInstance;
 	}
 	
 
