@@ -32,8 +32,15 @@ public class Student {
 	@Column(name = "last_name", unique = false, nullable = false)
 	private String lastName;
 	
-	@ManyToOne
-	@JoinColumn(name="student", referencedColumnName="student_id", nullable=true)
-	private Set<Course> unfinished_courses = new HashSet<Course>();
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
+	private Set<Document> documenti = new HashSet<Document>();
+	
+
+	
+//	@ManyToOne
+//	@JoinColumn(name="student", referencedColumnName="student_id", nullable=true)
+	
+//	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+//	private Set<Course> unfinished_courses = new HashSet<Course>();
 	
 }
