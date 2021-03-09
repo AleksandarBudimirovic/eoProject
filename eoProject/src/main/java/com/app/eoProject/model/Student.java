@@ -33,14 +33,53 @@ public class Student {
 	private String lastName;
 	
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
-	private Set<Document> documenti = new HashSet<Document>();
+	private Set<Document> documents = new HashSet<Document>();
+
+	public Student() {
+		super();
+	}
+
+	public Student(Long id, String firstName, String lastName, Set<Document> documents) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.documents = documents;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Set<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(Set<Document> documents) {
+		this.documents = documents;
+	}
 	
 
 	
-//	@ManyToOne
-//	@JoinColumn(name="student", referencedColumnName="student_id", nullable=true)
-	
-//	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-//	private Set<Course> unfinished_courses = new HashSet<Course>();
 	
 }
