@@ -30,6 +30,10 @@ public class Enrollment {
 	@Column(name = "endDate", unique = false, nullable = false)
 	private Date endDate;
 	
+	// da li nam ovo treba ili druga verzija za instancu kursa?
+	/*@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "enrollment")
+	private Set<CourseInstance> courseInstance = new HashSet<CourseInstance>();*/
+	
 	
 	public Enrollment() {
 		super();

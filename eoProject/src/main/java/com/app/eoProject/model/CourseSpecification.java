@@ -1,12 +1,17 @@
 package com.app.eoProject.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -27,6 +32,10 @@ public class CourseSpecification {
 	
 	@Column(name = "ECTS", unique = false, nullable = false)
 	private String ECTS;
+	
+	//da li nam ovde treba za course inactancu i koja je anotiacija
+	/*@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "courseSpecification")
+	private Set<CourseInstance> courseInstance = new HashSet<CourseInstance>();*/
 
 	public CourseSpecification() {
 		super();

@@ -32,17 +32,18 @@ public class ExamType {
 	@Column(name = "code", unique = false, nullable = false)
 	private String code;
 	
-	@Column(name = "code", unique = false, nullable = false)
+	@Column(name = "score", unique = false, nullable = false)
 	private Double score;
 	
 	@Column(name = "examType", unique = false, nullable = false)
 	private ExamTypeEnum examType;
 
-	public ExamType(Long id, String name, String code, ExamTypeEnum examType) {
+	public ExamType(Long id, String name, String code, Double score, ExamTypeEnum examType) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.code = code;
+		this.score = score;
 		this.examType = examType;
 	}
 
@@ -80,6 +81,14 @@ public class ExamType {
 
 	public void setExamType(ExamTypeEnum examType) {
 		this.examType = examType;
+	}
+
+	public Double getScore() {
+		return score;
+	}
+
+	public void setScore(Double score) {
+		this.score = score;
 	}
 	
 	

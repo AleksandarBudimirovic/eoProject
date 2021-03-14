@@ -22,8 +22,6 @@ public class TeachingType {
 	@Column(name = "code", unique = false, nullable = false)
 	private String code;
 	
-	@Column(name = "code", unique = false, nullable = false)
-	private Double score;
 	
 	@Column(name = "teachingType", unique = false, nullable = false)
 	private TeachingTypeEnum teachingType;
@@ -60,13 +58,6 @@ public class TeachingType {
 		this.code = code;
 	}
 
-	public Double getScore() {
-		return score;
-	}
-
-	public void setScore(Double score) {
-		this.score = score;
-	}
 
 	public TeachingTypeEnum getTeachingType() {
 		return teachingType;

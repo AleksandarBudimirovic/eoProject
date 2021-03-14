@@ -41,7 +41,6 @@ public class Student {
 	private Set<ExamInstance> examInstance = new HashSet<ExamInstance>();
 
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
-	//@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Payment> payments = new HashSet<Payment>();
 	
 	
