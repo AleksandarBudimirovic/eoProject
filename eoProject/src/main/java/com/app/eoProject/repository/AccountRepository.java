@@ -8,8 +8,10 @@ import com.app.eoProject.model.Account;
 
 
 
+
 public interface AccountRepository extends JpaRepository<Account, Long> {
 	
 	//List<Account> findAll();
+	Account findByName (String name);
 
 }
