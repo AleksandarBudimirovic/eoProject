@@ -6,5 +6,7 @@ import com.app.eoProject.model.CourseSpecification;
 
 
 public interface CourseSpecificationRepository extends JpaRepository<CourseSpecification, Long> {
+	
+	CourseSpecification findByName (String name);
 
 }
