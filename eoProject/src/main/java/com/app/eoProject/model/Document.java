@@ -30,9 +30,6 @@ public class Document {
 	@Column(name = "document_type", unique = false, nullable = false)
 	private DocumentType documentType;
 	
-	//Akina mudrost
-	//@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    //private Student student;
 	
 	@ManyToOne
 	@JoinColumn(name="student", referencedColumnName="student_id", nullable=true)

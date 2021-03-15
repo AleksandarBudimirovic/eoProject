@@ -37,34 +37,26 @@ public class Account {
 	@Column(name = "date", unique = false, nullable = false)
 	private Date date;
 	
-/*	//VIDETI DA LI JE OVO DOBRO I DA LI NAM TREBA TA VEZA
-	@OneToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "account")
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student", referencedColumnName = "student_id")
+	private Student student;
+	
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "payment")
 	private Set<Payment> payment = new HashSet<Payment>();
-	
-	//VIDETI DA LI JE OVO DOBRO I DA LI NAM TREBA TA VEZA
-	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "account")
-	private Set<Student> student = new HashSet<Student>();
-	
-	//ili ovo
-	@ManyToOne
-	@JoinColumn(name="student", referencedColumnName="student_id", nullable=true)
-	private Student student;*/
+
+	public Account(Long id, String name, int amount, Date date, Student student, Set<Payment> payment) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.amount = amount;
+		this.date = date;
+		this.student = student;
+		this.payment = payment;
+	}
 
 	public Account() {
 		super();
 	}
-
-	public Account(Long id, String name, int amount, Date date/*, Set<Payment> payment, Set<Student> student*/) {
-		super();
-		this.id = id;
-		this.name= name;
-		this.amount = amount;
-		this.date = date;
-		/*this.payment = payment;
-		this.student = student;*/
-		
-	}
-
 
 	public Long getId() {
 		return id;
@@ -98,7 +90,15 @@ public class Account {
 		this.date = date;
 	}
 
-	/*public Set<Payment> getPayment() {
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public Set<Payment> getPayment() {
 		return payment;
 	}
 
@@ -106,13 +106,6 @@ public class Account {
 		this.payment = payment;
 	}
 
-	public Set<Student> getStudent() {
-		return student;
-	}
-
-	public void setStudent(Set<Student> student) {
-		this.student = student;
-	}*/
 	
 	
 	

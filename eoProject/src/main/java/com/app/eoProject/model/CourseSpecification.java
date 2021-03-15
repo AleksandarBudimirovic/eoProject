@@ -11,7 +11,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -33,20 +36,22 @@ public class CourseSpecification {
 	@Column(name = "ECTS", unique = false, nullable = false)
 	private String ECTS;
 	
-	//da li nam ovde treba za course inactancu i koja je anotiacija
-	/*@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "courseSpecification")
-	private Set<CourseInstance> courseInstance = new HashSet<CourseInstance>();*/
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "putnik", referencedColumnName = "courseInstance_id", nullable = true)
+	private CourseInstance courseInstance;
+	
 
-	public CourseSpecification() {
-		super();
-	}
-
-	public CourseSpecification(Long id, String title, String code, String eCTS) {
+	public CourseSpecification(Long id, String title, String code, String eCTS, CourseInstance courseInstance) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.code = code;
 		ECTS = eCTS;
+		this.courseInstance = courseInstance;
+	}
+
+	public CourseSpecification() {
+		super();
 	}
 
 	public Long getId() {
@@ -80,6 +85,16 @@ public class CourseSpecification {
 	public void setECTS(String eCTS) {
 		ECTS = eCTS;
 	}
+
+	public CourseInstance getCourseInstance() {
+		return courseInstance;
+	}
+
+	public void setCourseInstance(CourseInstance courseInstance) {
+		this.courseInstance = courseInstance;
+	}
+
+	
 	
 	
 

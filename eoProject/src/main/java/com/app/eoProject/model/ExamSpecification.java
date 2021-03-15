@@ -32,11 +32,21 @@ public class ExamSpecification {
 	@Column(name = "date", unique = false, nullable = false)
 	private Date date;
 
-	public ExamSpecification(Long id, Double examScoreMax, Date date) {
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "examInstance", referencedColumnName = "examInstance_id")
+	private ExamInstance examInstance;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student", referencedColumnName = "student_id")
+	private Student student;
+
+	public ExamSpecification(Long id, Double examScoreMax, Date date, ExamInstance examInstance, Student student) {
 		super();
 		this.id = id;
 		this.examScoreMax = examScoreMax;
 		this.date = date;
+		this.examInstance = examInstance;
+		this.student = student;
 	}
 
 	public ExamSpecification() {
@@ -66,9 +76,24 @@ public class ExamSpecification {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
-	
 
+	public ExamInstance getExamInstance() {
+		return examInstance;
+	}
+
+	public void setExamInstance(ExamInstance examInstance) {
+		this.examInstance = examInstance;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	
+	
 	
 }

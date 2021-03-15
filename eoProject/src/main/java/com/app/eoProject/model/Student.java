@@ -43,15 +43,20 @@ public class Student {
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
 	private Set<Payment> payments = new HashSet<Payment>();
 	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "examSpecification", referencedColumnName = "examSpecification_id")
+	private ExamSpecification examSpecification;
 	
-	public Student() {
-		super();
-	}
-
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user", referencedColumnName = "user_id")
+	private User user;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment", referencedColumnName = "payment_id")
+	private Payment payment;
 
 	public Student(Long id, String firstName, String lastName, Set<Document> documents, Set<ExamInstance> examInstance,
-			Set<Payment> payments) {
+			Set<Payment> payments, ExamSpecification examSpecification, User user, Payment payment) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -59,9 +64,14 @@ public class Student {
 		this.documents = documents;
 		this.examInstance = examInstance;
 		this.payments = payments;
+		this.examSpecification = examSpecification;
+		this.user = user;
+		this.payment = payment;
 	}
 
-
+	public Student() {
+		super();
+	}
 
 	public Long getId() {
 		return id;
@@ -95,6 +105,14 @@ public class Student {
 		this.documents = documents;
 	}
 
+	public Set<ExamInstance> getExamInstance() {
+		return examInstance;
+	}
+
+	public void setExamInstance(Set<ExamInstance> examInstance) {
+		this.examInstance = examInstance;
+	}
+
 	public Set<Payment> getPayments() {
 		return payments;
 	}
@@ -103,13 +121,30 @@ public class Student {
 		this.payments = payments;
 	}
 
-	public Set<ExamInstance> getExamInstance() {
-		return examInstance;
+	public ExamSpecification getExamSpecification() {
+		return examSpecification;
 	}
 
-	public void setExamInstance(Set<ExamInstance> examInstance) {
-		this.examInstance = examInstance;
+	public void setExamSpecification(ExamSpecification examSpecification) {
+		this.examSpecification = examSpecification;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setUser(Payment payment) {
+		this.payment = payment;
+	}
+	
 	
 
 	

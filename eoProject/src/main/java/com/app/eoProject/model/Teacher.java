@@ -10,7 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -29,8 +31,22 @@ public class Teacher {
 	@Column(name = "last_name", unique = false, nullable = false)
 	private String lastName;
 	
-	//teaching?
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "teaching")
+	private Set<Teaching> teaching = new HashSet<Teaching>();
 	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user", referencedColumnName = "user_id")
+	private User user;
+
+	public Teacher(Long id, String firstName, String lastName, Set<Teaching> teaching, User user) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.teaching = teaching;
+		this.user = user;
+	}
+
 	public Teacher() {
 		super();
 	}
@@ -59,13 +75,23 @@ public class Teacher {
 		this.lastName = lastName;
 	}
 
-	public Teacher(Long id, String firstName, String lastName) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-
+	public Set<Teaching> getTeaching() {
+		return teaching;
 	}
+
+	public void setTeaching(Set<Teaching> teaching) {
+		this.teaching = teaching;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
 
 	
 	

@@ -1,12 +1,19 @@
 package com.app.eoProject.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,26 +26,30 @@ public class Teaching {
 	@Column(name = "teaching_id", unique = true, nullable = false)
 	private Long id;
 	
-	@Column(name = "courseInstance_id", unique = true, nullable = false)
-	private CourseInstance courseInstance;
-	
-	@Column(name = "teaching_type", unique = false, nullable = false)
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacher", referencedColumnName = "teacher_id")
+	private Teacher teacher;
+
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teachingType", referencedColumnName = "teachingType_id")
 	private TeachingType teachingType;
 	
-	//ne znam da li ovo treba
-	//@ManyToOne
-	//@JoinColumn(name="teacher", referencedColumnName="teacher_id", nullable=true)
-	//private Teacher teacher;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "courseInstance", referencedColumnName = "courseInstance_id")
+	private CourseInstance courseInstance;
+	
+	
+
+	public Teaching(Long id, Teacher teacher, TeachingType teachingType, CourseInstance courseInstance) {
+		super();
+		this.id = id;
+		this.teacher = teacher;
+		this.teachingType = teachingType;
+		this.courseInstance = courseInstance;
+	}
 
 	public Teaching() {
 		super();
-	}
-
-	public Teaching(Long id, CourseInstance courseInstance, TeachingType teachingType) {
-		super();
-		this.id = id;
-		this.courseInstance = courseInstance;
-		this.teachingType = teachingType;
 	}
 
 	public Long getId() {
@@ -49,12 +60,12 @@ public class Teaching {
 		this.id = id;
 	}
 
-	public CourseInstance getCourseInstance() {
-		return courseInstance;
+	public Teacher getTeacher() {
+		return teacher;
 	}
 
-	public void setCourseInstance(CourseInstance courseInstance) {
-		this.courseInstance = courseInstance;
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 	public TeachingType getTeachingType() {
@@ -65,6 +76,14 @@ public class Teaching {
 		this.teachingType = teachingType;
 	}
 
+	public CourseInstance getCourseInstance() {
+		return courseInstance;
+	}
+
+	public void setCourseInstance(CourseInstance courseInstance) {
+		this.courseInstance = courseInstance;
+	}
+	
 	
 	
 	

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,18 +34,27 @@ public class User {
 	@Column(name = "role", unique = false, nullable = false)
 	private Role role;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacher", referencedColumnName = "teacher_id")
+	private Teacher teacher;
 	
-	public User() {
-		super();
-	}
-	
-	public User(Long id, String username, String password) {
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student", referencedColumnName = "student_id")
+	private Student student;
+
+	public User(Long id, String username, String password, Role role, Teacher teacher, Student student) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.role = role;
+		this.teacher = teacher;
+		this.student = student;
 	}
-	
+
+	public User() {
+		super();
+	}
 
 	public Long getId() {
 		return id;
@@ -77,6 +87,25 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+	
+	
+	
 
 	
 

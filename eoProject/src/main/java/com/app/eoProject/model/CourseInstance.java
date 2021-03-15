@@ -12,7 +12,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,34 +32,36 @@ public class CourseInstance {
 	@Column(name = "endDate", unique = false, nullable = false)
 	private Date endDate;
 	
-	//da li nam treba za specexam i speckursa i za teaching i koja anotacija
-	
-/*	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "courseInstance")
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "courseSpecification")
 	private Set<CourseSpecification> courseSpecification = new HashSet<CourseSpecification>();
 	
-	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "courseInstance")
-	private Set<ExamSpecification> examSpecification = new HashSet<ExamSpecification>();
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "examSpecification", referencedColumnName = "examSpecification_id")
+	private ExamSpecification examSpecification;
 	
-	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "courseInstance")
-	private Set<Teaching> teaching = new HashSet<Teaching>();
-*/	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "enrollment", referencedColumnName = "enrollment_id")
+	private Enrollment enrollment;
 	
-	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teaching", referencedColumnName = "teaching_id")
+	private Teaching teaching;
 
-	public CourseInstance() {
-		super();
-	}
-	
-	
-
-	public CourseInstance(Long id, Date startDate, Date endDate) {
+	public CourseInstance(Long id, Date startDate, Date endDate, Set<CourseSpecification> courseSpecification,
+			ExamSpecification examSpecification, Enrollment enrollment, Teaching teaching) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.courseSpecification = courseSpecification;
+		this.examSpecification = examSpecification;
+		this.enrollment = enrollment;
+		this.teaching = teaching;
 	}
 
-
+	public CourseInstance() {
+		super();
+	}
 
 	public Long getId() {
 		return id;
@@ -83,8 +87,7 @@ public class CourseInstance {
 		this.endDate = endDate;
 	}
 
-
-/*	public Set<CourseSpecification> getCourseSpecification() {
+	public Set<CourseSpecification> getCourseSpecification() {
 		return courseSpecification;
 	}
 
@@ -92,23 +95,36 @@ public class CourseInstance {
 		this.courseSpecification = courseSpecification;
 	}
 
-	public Set<ExamSpecification> getExamSpecification() {
+	public ExamSpecification getExamSpecification() {
 		return examSpecification;
 	}
 
-	public void setExamSpecification(Set<ExamSpecification> examSpecification) {
+	public void setExamSpecification(ExamSpecification examSpecification) {
 		this.examSpecification = examSpecification;
 	}
 
-	public Set<Teaching> getTeaching() {
+	public Enrollment getEnrollment() {
+		return enrollment;
+	}
+
+	public void setEnrollment(Enrollment enrollment) {
+		this.enrollment = enrollment;
+	}
+
+	public Teaching getTeaching() {
 		return teaching;
 	}
 
-	public void setTeaching(Set<Teaching> teaching) {
+	public void setTeaching(Teaching teaching) {
 		this.teaching = teaching;
 	}
+
 	
-*/	
+
+	
+	
+
+	
 	
 	
 	
