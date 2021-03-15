@@ -20,6 +20,7 @@ public class Payment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "payment_id", unique = true, nullable = false)
 	private Long id;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
