@@ -14,12 +14,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "teachingType")
+@Table(name = "teaching_type")
 public class TeachingType {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "teachingType_id", unique = true, nullable = false)
+	@Column(name = "teaching_type_id", unique = true, nullable = false)
 	private Long id;
 	
 	@Column(name = "name", unique = false, nullable = false)
@@ -28,7 +28,7 @@ public class TeachingType {
 	@Column(name = "code", unique = false, nullable = false)
 	private String code;
 	
-	@Column(name = "teachingType", unique = false, nullable = false)
+	@Column(name = "teaching_type", unique = false, nullable = false)
 	private TeachingTypeEnum teachingType;
 	
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "teaching")

@@ -26,7 +26,7 @@ public class Payment {
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private Student student;
 	
-	@Column(name = "paymentReason", unique = false, nullable = false)
+	@Column(name = "payment_reason", unique = false, nullable = false)
 	private String paymentReason;
 	
 	@Column(name = "receiver", unique = false, nullable = false)
@@ -35,16 +35,16 @@ public class Payment {
 	@Column(name = "amount", unique = false, nullable = false)
 	private double amount;
 	
-	@Column(name = "recieversAccount", unique = false, nullable = false)
+	@Column(name = "recievers_account", unique = false, nullable = false)
 	private String recieversAccount;
 	
 	@Column(name = "model", unique = false, nullable = false)
 	private int model;
 	
-	@Column(name = "referenceNumber", unique = false, nullable = false)
+	@Column(name = "reference_number", unique = false, nullable = false)
 	private String referenceNumber;
 	
-	@Column(name = "paymentDate", unique = false, nullable = false)
+	@Column(name = "payment_date", unique = false, nullable = false)
 	private Date paymentDate;
 
 	public Payment() {

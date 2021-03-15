@@ -18,22 +18,22 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "examSpecification")
+@Table(name = "exam_specification")
 public class ExamSpecification {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "examSpecification_id", unique = true, nullable = false)
+	@Column(name = "exam_specification_id", unique = true, nullable = false)
 	private Long id;
 	
-	@Column(name = "examScoreMax", unique = false, nullable = false)
+	@Column(name = "exam_score_max", unique = false, nullable = false)
 	private Double examScoreMax;
 	
 	@Column(name = "date", unique = false, nullable = false)
 	private Date date;
 
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "examInstance", referencedColumnName = "examInstance_id")
+    @JoinColumn(name = "exam_instance", referencedColumnName = "exam_instance_id")
 	private ExamInstance examInstance;
 	
 	@OneToOne(cascade = CascadeType.ALL)

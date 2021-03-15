@@ -31,11 +31,11 @@ public class Teaching {
 	private Teacher teacher;
 
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teachingType", referencedColumnName = "teachingType_id")
+    @JoinColumn(name = "teaching_type", referencedColumnName = "teaching_type_id")
 	private TeachingType teachingType;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "courseInstance", referencedColumnName = "courseInstance_id")
+    @JoinColumn(name = "course_instance", referencedColumnName = "course_instance_id")
 	private CourseInstance courseInstance;
 	
 	

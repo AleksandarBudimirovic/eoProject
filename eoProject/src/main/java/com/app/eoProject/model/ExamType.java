@@ -18,12 +18,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "examType")
+@Table(name = "exam_type")
 public class ExamType {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "examType_id", unique = true, nullable = false)
+	@Column(name = "exam_type_id", unique = true, nullable = false)
 	private Long id;
 	
 	@Column(name = "name", unique = false, nullable = false)
@@ -35,7 +35,7 @@ public class ExamType {
 	@Column(name = "score", unique = false, nullable = false)
 	private Double score;
 	
-	@Column(name = "examType", unique = false, nullable = false)
+	@Column(name = "exam_type", unique = false, nullable = false)
 	private ExamTypeEnum examType;
 
 	public ExamType(Long id, String name, String code, Double score, ExamTypeEnum examType) {

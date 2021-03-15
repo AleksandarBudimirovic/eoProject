@@ -19,25 +19,25 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "examInstance")
+@Table(name = "exam_instance")
 public class ExamInstance {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "examInstance_id", unique = true, nullable = false)
+	@Column(name = "exam_instance_id", unique = true, nullable = false)
 	private Long id;
 	
-	@Column(name = "startDate", unique = false, nullable = false)
+	@Column(name = "start_date", unique = false, nullable = false)
 	private Date startDate;
 	
-	@Column(name = "endDate", unique = false, nullable = false)
+	@Column(name = "end_date", unique = false, nullable = false)
 	private Date endDate;
 	
 	@ManyToOne
 	@JoinColumn(name="student", referencedColumnName="student_id", nullable=true)
 	private Student student;
 	
-	@Column(name = "pointsScored", unique = false, nullable = false)
+	@Column(name = "points_scored", unique = false, nullable = false)
 	private Double pointsScored;
 	
 	@OneToOne(cascade = CascadeType.ALL)

@@ -18,25 +18,25 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "courseInstance")
+@Table(name = "course_instance")
 public class CourseInstance {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "courseInstance_id", unique = true, nullable = false)
+	@Column(name = "course_instance_id", unique = true, nullable = false)
 	private Long id;
 	
-	@Column(name = "startDate", unique = false, nullable = false)
+	@Column(name = "start_date", unique = false, nullable = false)
 	private Date startDate;
 	
-	@Column(name = "endDate", unique = false, nullable = false)
+	@Column(name = "end_date", unique = false, nullable = false)
 	private Date endDate;
 	
-	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "courseSpecification")
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "course_specification")
 	private Set<CourseSpecification> courseSpecification = new HashSet<CourseSpecification>();
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "examSpecification", referencedColumnName = "examSpecification_id")
+    @JoinColumn(name = "exam_specification", referencedColumnName = "exam_specification_id")
 	private ExamSpecification examSpecification;
 	
 	@OneToOne(cascade = CascadeType.ALL)

@@ -21,16 +21,17 @@ public class Enrollment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "enrollment_id", unique = true, nullable = false)
 	private Long id;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private Student student;
 	
 	
-	@Column(name = "startDate", unique = false, nullable = false)
+	@Column(name = "start_date", unique = false, nullable = false)
 	private Date startDate;
 	
-	@Column(name = "endDate", unique = false, nullable = false)
+	@Column(name = "end_date", unique = false, nullable = false)
 	private Date endDate;
 	
 

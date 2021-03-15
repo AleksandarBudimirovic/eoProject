@@ -44,7 +44,7 @@ public class Student {
 	private Set<Payment> payments = new HashSet<Payment>();
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "examSpecification", referencedColumnName = "examSpecification_id")
+    @JoinColumn(name = "exam_specification", referencedColumnName = "exam_specification_id")
 	private ExamSpecification examSpecification;
 	
 	@OneToOne(cascade = CascadeType.ALL)

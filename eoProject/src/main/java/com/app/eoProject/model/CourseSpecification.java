@@ -19,12 +19,12 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "courseSpecification")
+@Table(name = "course_specification")
 public class CourseSpecification {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "courseSpecification_id", unique = true, nullable = false)
+	@Column(name = "course_specification_id", unique = true, nullable = false)
 	private Long id;
 	
 	@Column(name = "title", unique = false, nullable = false)
@@ -37,9 +37,10 @@ public class CourseSpecification {
 	private String ECTS;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "putnik", referencedColumnName = "courseInstance_id", nullable = true)
+    @JoinColumn(name = "course_instance", referencedColumnName = "course_instance_id", nullable = true)
 	private CourseInstance courseInstance;
 	
+
 
 	public CourseSpecification(Long id, String title, String code, String eCTS, CourseInstance courseInstance) {
 		super();
