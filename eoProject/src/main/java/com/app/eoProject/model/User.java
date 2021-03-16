@@ -34,6 +34,9 @@ public class User {
 	@Column(name = "role", unique = false, nullable = false)
 	private Role role;
 	
+	@Column(name = "email", unique = false, nullable = false)
+	private String email;
+	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher", referencedColumnName = "teacher_id")
 	private Teacher teacher;
@@ -42,12 +45,15 @@ public class User {
     @JoinColumn(name = "student", referencedColumnName = "student_id")
 	private Student student;
 
-	public User(Long id, String username, String password, Role role, Teacher teacher, Student student) {
+	
+
+	public User(Long id, String username, String password, Role role, String email, Teacher teacher, Student student) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.role = role;
+		this.email = email;
 		this.teacher = teacher;
 		this.student = student;
 	}

@@ -34,6 +34,9 @@ public class Student {
 	@Column(name = "last_name", unique = false, nullable = false)
 	private String lastName;
 	
+	@Column(name = "card_number", unique = false, nullable = false)
+	private String cardNumber;
+	
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
 	private Set<Document> documents = new HashSet<Document>();
 	
@@ -55,12 +58,15 @@ public class Student {
     @JoinColumn(name = "payment", referencedColumnName = "payment_id")
 	private Payment payment;
 
-	public Student(Long id, String firstName, String lastName, Set<Document> documents, Set<ExamInstance> examInstance,
-			Set<Payment> payments, ExamSpecification examSpecification, User user, Payment payment) {
+
+	public Student(Long id, String firstName, String lastName, String cardNumber,  Set<Document> documents,
+			Set<ExamInstance> examInstance, Set<Payment> payments, ExamSpecification examSpecification, User user,
+			Payment payment) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.cardNumber = cardNumber;
 		this.documents = documents;
 		this.examInstance = examInstance;
 		this.payments = payments;
@@ -144,6 +150,19 @@ public class Student {
 	public void setUser(Payment payment) {
 		this.payment = payment;
 	}
+
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+	
 	
 	
 
