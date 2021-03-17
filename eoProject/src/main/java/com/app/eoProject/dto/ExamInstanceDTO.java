@@ -1,5 +1,5 @@
 package com.app.eoProject.dto;
 
-public class AdminDTO {
+public class ExamInstanceDTO {
 
 }
