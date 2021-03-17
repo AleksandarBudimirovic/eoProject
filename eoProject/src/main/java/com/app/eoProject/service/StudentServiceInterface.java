@@ -10,7 +10,7 @@ public interface StudentServiceInterface {
 	
 	List<Student> findAll();
 	
-	Student save(Student account);
+	Student save(Student student);
 	
 	void remove(Long id);
 	

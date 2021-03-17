@@ -29,7 +29,7 @@ public class ExamSpecificationService implements ExamSpecificationServiceInterfa
 
 	@Override
 	public void remove(Long id) {
-		System.out.println("Removing in Student service...");
+		System.out.println("Removing in ExamSpecification service...");
 		repo.deleteById(id);
 	}
 	
