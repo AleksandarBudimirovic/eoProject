@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.eoProject.dto.CourseSpecificationDTO;
 import com.app.eoProject.dto.StudentDTO;
+import com.app.eoProject.model.CourseSpecification;
 import com.app.eoProject.model.Student;
+import com.app.eoProject.service.CourseSpecificationServiceInterface;
 import com.app.eoProject.service.DocumentServiceInterface;
 import com.app.eoProject.service.ExamInstanceServiceInterface;
 import com.app.eoProject.service.ExamSpecificationServiceInterface;
@@ -28,8 +31,8 @@ import com.app.eoProject.service.StudentServiceInterface;
 import com.app.eoProject.service.UserServiceInterface;
 
 @RestController
-@RequestMapping(value = "api/students")
-public class StudentController {
+@RequestMapping(value = "api/course_specifications")
+public class CourseSpecificationController {
 
 	@Autowired
 	private StudentServiceInterface studentService;
@@ -43,83 +46,74 @@ public class StudentController {
 	private ExamInstanceServiceInterface examInstService;
 	@Autowired
 	private DocumentServiceInterface docService;
-
+	@Autowired
+	private CourseSpecificationServiceInterface courseSpecService;
 	
 	@GetMapping
-	public ResponseEntity<List<StudentDTO>> getStudenti(){
+	public ResponseEntity<List<CourseSpecificationDTO>> getCourseSpecifications(){
 		
-		List<Student> studenti = studentService.findAll();		
+		List<CourseSpecification> courseSpecifications = courseSpecService.findAll();		
 		
-		List<StudentDTO> studentsDTO = new ArrayList<StudentDTO>();
+		List<CourseSpecificationDTO> courseSpecificationsDTO = new ArrayList<CourseSpecificationDTO>();
 		
-		for(Student a: studenti) {
+		for(CourseSpecification a: courseSpecifications) {
 			
-			StudentDTO objDTO = new StudentDTO(a);
+			CourseSpecificationDTO objDTO = new CourseSpecificationDTO(a);
 			
-			studentsDTO.add(objDTO);
+			courseSpecificationsDTO.add(objDTO);
 		}
 		
-		return new ResponseEntity<List<StudentDTO>>(studentsDTO, HttpStatus.OK);
+		return new ResponseEntity<List<CourseSpecificationDTO>>(courseSpecificationsDTO, HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<StudentDTO> getStudent(@PathVariable("id") Long id) {
+	public ResponseEntity<CourseSpecificationDTO> getCourseSpecification(@PathVariable("id") Long id) {
 		
-		Student student = studentService.findOne(id);
+		CourseSpecification courseSpecification = courseSpecService.findOne(id);
 		
-		if(student == null){
-			return new ResponseEntity<StudentDTO>(HttpStatus.NOT_FOUND);
+		if(courseSpecification == null){
+			return new ResponseEntity<CourseSpecificationDTO>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.OK);
+		return new ResponseEntity<CourseSpecificationDTO>(new CourseSpecificationDTO(courseSpecification), HttpStatus.OK);
 	}
 	
 	@PostMapping(consumes="application/json")
 	public ResponseEntity<StudentDTO> addStudent(@RequestBody StudentDTO studentDTO) {
 		Student student = new Student();
 		
-		student.setFirstName(studentDTO.getFirstName());
-		student.setFirstName(studentDTO.getLastName());
-		student.setFirstName(studentDTO.getCardNumber());
-		student.setExamSpecification(examSpecService.findOne(studentDTO.getExamSpecification().getId()));
-		student.setUser(userService.findOne(studentDTO.getUser().getId()));
-//		student.setExamInstance(examInstService.);+++++++++++++++++++++++++
+
 			
 		student = studentService.save(student);
 		return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.CREATED);	
 	}
 	
 	@PutMapping(value="/{id}", consumes="application/json")
-	public ResponseEntity<StudentDTO> editStudent(@RequestBody StudentDTO studentDTO, @PathVariable("id") Long id) {
+	public ResponseEntity<CourseSpecificationDTO> editCourseSpecification(@RequestBody CourseSpecificationDTO courseSpecificationDTO, @PathVariable("id") Long id) {
 		
-		Student student = studentService.findOne(id); 
+		CourseSpecification courseSpecification = courseSpecService.findOne(id); 
 		
-		if (student == null) {
-			return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
+		if (courseSpecification == null) {
+			return new ResponseEntity<CourseSpecificationDTO>(HttpStatus.BAD_REQUEST);
 		}
 		
-		student.setFirstName(studentDTO.getFirstName());
-		student.setFirstName(studentDTO.getLastName());
-		student.setFirstName(studentDTO.getCardNumber());
-		student.setExamSpecification(examSpecService.findOne(studentDTO.getExamSpecification().getId()));
-		student.setUser(userService.findOne(studentDTO.getUser().getId()));
-//		student.setExamInstance(examInstService.);+++++++++++++++++++++++++
+
 		
-		student = studentService.save(student);
+		courseSpecification = courseSpecService.save(courseSpecification);
 		
-		return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.OK);		
+		return new ResponseEntity<CourseSpecificationDTO>(new CourseSpecificationDTO(courseSpecification), HttpStatus.OK);		
 	
 	}
 	
 	@DeleteMapping(value="/{id}")
-	public ResponseEntity<Void> deleteStudent(@PathVariable("id") Long id) {
-		Student student = studentService.findOne(id);
-		if (student != null){
-			System.out.println("student nije null");
+	public ResponseEntity<Void> deleteCourseSpecification(@PathVariable("id") Long id) {
+		CourseSpecification courseSpecification = courseSpecService.findOne(id);
+		if (courseSpecification != null){
+			System.out.println("courseSpecification nije null");
 			
 			System.out.println("Id je: " + id);
 			
-			studentService.remove(id);
+			courseSpecService.remove(id);
 			System.out.println("removed");
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} 
