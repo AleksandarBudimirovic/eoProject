@@ -147,10 +147,6 @@ public class Student {
 		return payment;
 	}
 
-	public void setUser(Payment payment) {
-		this.payment = payment;
-	}
-
 	public String getCardNumber() {
 		return cardNumber;
 	}
