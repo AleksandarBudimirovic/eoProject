@@ -38,7 +38,7 @@ public class StudentDTO implements Serializable{
 
 	public StudentDTO(Student student) {
 		this(student.getId(), student.getFirstName(), student.getLastName(), student.getCardNumber(), new ArrayList<DocumentDTO>(), new ArrayList<PaymentDTO>(), new ArrayList<ExamInstanceDTO>(),
-				new ExamSpecificationDTO(student.getExamSpecification()), new UserDTO(student.getUser());
+				new ExamSpecificationDTO(student.getExamSpecification()), new UserDTO(student.getUser()));
 	}
 
 	public Long getId() {

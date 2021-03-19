@@ -28,7 +28,7 @@ public class TeachingType {
 	@Column(name = "code", unique = false, nullable = false)
 	private String code;
 	
-	@Column(name = "teaching_type", unique = false, nullable = false)
+	@Column(name = "teaching_type_enum", unique = false, nullable = false)
 	private TeachingTypeEnum teachingType;
 	
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "teaching")
