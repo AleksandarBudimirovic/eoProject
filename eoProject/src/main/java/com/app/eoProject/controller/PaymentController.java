@@ -65,7 +65,13 @@ public class PaymentController {
 		Payment payment = new Payment();
 		
 		payment.setStudent(studentService.findOne(paymentDTO.getStudent().getId()));
-		
+		payment.setPaymentReason(paymentDTO.getPaymentReason());
+		payment.setReceiver(paymentDTO.getReceiver());
+		payment.setAmount(paymentDTO.getAmount());
+		payment.setRecieversAccount(paymentDTO.getRecieversAccount());
+		payment.setModel(paymentDTO.getModel());
+		payment.setReferenceNumber(paymentDTO.getReferenceNumber());
+		payment.setPaymentDate(paymentDTO.getPaymentDate());
 	
 		payment = paymentService.save(payment);
 		return new ResponseEntity<PaymentDTO>(new PaymentDTO(payment), HttpStatus.CREATED);	
@@ -80,8 +86,15 @@ public class PaymentController {
 			return new ResponseEntity<PaymentDTO>(HttpStatus.BAD_REQUEST);
 		}
 		
-		
 		payment.setStudent(studentService.findOne(paymentDTO.getStudent().getId()));
+		payment.setPaymentReason(paymentDTO.getPaymentReason());
+		payment.setReceiver(paymentDTO.getReceiver());
+		payment.setAmount(paymentDTO.getAmount());
+		payment.setRecieversAccount(paymentDTO.getRecieversAccount());
+		payment.setModel(paymentDTO.getModel());
+		payment.setReferenceNumber(paymentDTO.getReferenceNumber());
+		payment.setPaymentDate(paymentDTO.getPaymentDate());
+		
 		
 		
 		payment = paymentService.save(payment);

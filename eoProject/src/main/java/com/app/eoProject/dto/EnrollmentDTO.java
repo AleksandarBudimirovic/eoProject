@@ -15,7 +15,7 @@ public class EnrollmentDTO implements Serializable {
 	private StudentDTO student;
 	private Date startDate;
 	private Date endDate;
-	private ArrayList<CourseInstanceDTO> courseInstanceDTO = new ArrayList<CourseInstanceDTO>();
+	private ArrayList<CourseInstanceDTO> courseInstanceDTO ;
 	
 	
 	public EnrollmentDTO(Long id, StudentDTO student, Date startDate, Date endDate,
@@ -28,44 +28,53 @@ public class EnrollmentDTO implements Serializable {
 		this.courseInstanceDTO = courseInstanceDTO;
 	}
 	
-	
 	public EnrollmentDTO() {
 		super();
 	}
-	
-	
+
+
 	public EnrollmentDTO(Enrollment enrollment) {
 		this(enrollment.getId(), new StudentDTO(enrollment.getStudent()), enrollment.getStartDate(),
 				enrollment.getEndDate(), new ArrayList<CourseInstanceDTO>() );
 	}
-	
+
 	public StudentDTO getStudent() {
 		return student;
 	}
+
 	public void setStudent(StudentDTO student) {
 		this.student = student;
 	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
+
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+
 	public Date getEndDate() {
 		return endDate;
 	}
+
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
 	public ArrayList<CourseInstanceDTO> getCourseInstanceDTO() {
 		return courseInstanceDTO;
 	}
+
 	public void setCourseInstanceDTO(ArrayList<CourseInstanceDTO> courseInstanceDTO) {
 		this.courseInstanceDTO = courseInstanceDTO;
 	}
+
 	public Long getId() {
 		return id;
 	}
+	
+	
 	
 	
 
