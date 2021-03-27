@@ -41,7 +41,7 @@ public class Student {
 	private Set<Document> documents = new HashSet<Document>();
 	
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
-	private Set<ExamInstance> examInstance = new HashSet<ExamInstance>();
+	private Set<ExamInstance> examInstances = new HashSet<ExamInstance>();
 
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
 	private Set<Payment> payments = new HashSet<Payment>();
@@ -68,7 +68,7 @@ public class Student {
 		this.lastName = lastName;
 		this.cardNumber = cardNumber;
 		this.documents = documents;
-		this.examInstance = examInstance;
+		this.examInstances = examInstance;
 		this.payments = payments;
 		this.examSpecification = examSpecification;
 		this.user = user;
@@ -112,11 +112,11 @@ public class Student {
 	}
 
 	public Set<ExamInstance> getExamInstance() {
-		return examInstance;
+		return examInstances;
 	}
 
 	public void setExamInstance(Set<ExamInstance> examInstance) {
-		this.examInstance = examInstance;
+		this.examInstances = examInstance;
 	}
 
 	public Set<Payment> getPayments() {

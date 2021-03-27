@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.eoProject.dto.ExamInstanceDTO;
 import com.app.eoProject.dto.StudentDTO;
+import com.app.eoProject.model.ExamInstance;
 import com.app.eoProject.model.Student;
 import com.app.eoProject.service.DocumentServiceInterface;
 import com.app.eoProject.service.ExamInstanceServiceInterface;
@@ -83,7 +85,22 @@ public class StudentController {
 		student.setFirstName(studentDTO.getCardNumber());
 		student.setExamSpecification(examSpecService.findOne(studentDTO.getExamSpecification().getId()));
 		student.setUser(userService.findOne(studentDTO.getUser().getId()));
-//		student.setExamInstance(examInstService.);+++++++++++++++++++++++++
+
+		Set<ExamInstance> examInstances = new HashSet<ExamInstance>();
+		for(ExamInstanceDTO eiDTO : studentDTO.getExamInstances()) {
+			for(ExamInstance ei : examInstService.findAll()) {
+				if(eiDTO.getId() == ei.getId()) {
+					examInstances.add(ei);
+				}
+			}
+			
+			
+		}
+		student.setExamInstance(examInstances);
+		
+		
+		
+
 			
 		student = studentService.save(student);
 		return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.CREATED);	
