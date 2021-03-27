@@ -33,7 +33,7 @@ public class CourseInstance {
 	private Date endDate;
 	
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "course_specification")
-	private Set<CourseSpecification> courseSpecification = new HashSet<CourseSpecification>();
+	private Set<CourseSpecification> courseSpecifications = new HashSet<CourseSpecification>();
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "exam_specification", referencedColumnName = "exam_specification_id")
@@ -53,7 +53,7 @@ public class CourseInstance {
 		this.id = id;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.courseSpecification = courseSpecification;
+		this.courseSpecifications = courseSpecification;
 		this.examSpecification = examSpecification;
 		this.enrollment = enrollment;
 		this.teaching = teaching;
@@ -88,11 +88,11 @@ public class CourseInstance {
 	}
 
 	public Set<CourseSpecification> getCourseSpecification() {
-		return courseSpecification;
+		return courseSpecifications;
 	}
 
 	public void setCourseSpecification(Set<CourseSpecification> courseSpecification) {
-		this.courseSpecification = courseSpecification;
+		this.courseSpecifications = courseSpecification;
 	}
 
 	public ExamSpecification getExamSpecification() {
