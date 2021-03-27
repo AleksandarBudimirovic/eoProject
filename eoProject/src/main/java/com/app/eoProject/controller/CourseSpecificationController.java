@@ -18,10 +18,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.eoProject.dto.CourseInstanceDTO;
 import com.app.eoProject.dto.CourseSpecificationDTO;
+import com.app.eoProject.dto.DocumentDTO;
 import com.app.eoProject.dto.StudentDTO;
 import com.app.eoProject.model.CourseSpecification;
+import com.app.eoProject.model.Document;
 import com.app.eoProject.model.Student;
+import com.app.eoProject.service.CourseInstanceService;
+import com.app.eoProject.service.CourseInstanceServiceInterface;
 import com.app.eoProject.service.CourseSpecificationServiceInterface;
 import com.app.eoProject.service.DocumentServiceInterface;
 import com.app.eoProject.service.ExamInstanceServiceInterface;
@@ -48,6 +53,8 @@ public class CourseSpecificationController {
 	private DocumentServiceInterface docService;
 	@Autowired
 	private CourseSpecificationServiceInterface courseSpecService;
+	@Autowired
+	private CourseInstanceServiceInterface courseInstanceService;
 	
 	@GetMapping
 	public ResponseEntity<List<CourseSpecificationDTO>> getCourseSpecifications(){
@@ -79,13 +86,16 @@ public class CourseSpecificationController {
 	}
 	
 	@PostMapping(consumes="application/json")
-	public ResponseEntity<StudentDTO> addStudent(@RequestBody StudentDTO studentDTO) {
-		Student student = new Student();
+	public ResponseEntity<CourseSpecificationDTO> addCourseSpecification(@RequestBody CourseSpecificationDTO courseSpecificationDTO) {
+		CourseSpecification courseSpecification = new CourseSpecification();
 		
-
-			
-		student = studentService.save(student);
-		return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.CREATED);	
+		courseSpecification.setTitle(courseSpecificationDTO.getTitle());
+		courseSpecification.setECTS(courseSpecificationDTO.getECTS());
+		courseSpecification.setCode(courseSpecificationDTO.getCode());
+		courseSpecification.setCourseInstance(courseInstanceService.findOne(courseSpecificationDTO.getId()));
+		
+		courseSpecification = courseSpecService.save(courseSpecification);
+		return new ResponseEntity<CourseSpecificationDTO>(new CourseSpecificationDTO(courseSpecification), HttpStatus.CREATED);	
 	}
 	
 	@PutMapping(value="/{id}", consumes="application/json")
@@ -97,6 +107,10 @@ public class CourseSpecificationController {
 			return new ResponseEntity<CourseSpecificationDTO>(HttpStatus.BAD_REQUEST);
 		}
 		
+		courseSpecification.setTitle(courseSpecificationDTO.getTitle());
+		courseSpecification.setECTS(courseSpecificationDTO.getECTS());
+		courseSpecification.setCode(courseSpecificationDTO.getCode());
+		courseSpecification.setCourseInstance(courseInstanceService.findOne(courseSpecificationDTO.getId()));
 
 		
 		courseSpecification = courseSpecService.save(courseSpecification);

@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.eoProject.dto.DocumentDTO;
 import com.app.eoProject.dto.ExamInstanceDTO;
+import com.app.eoProject.dto.PaymentDTO;
 import com.app.eoProject.dto.StudentDTO;
+import com.app.eoProject.model.Document;
 import com.app.eoProject.model.ExamInstance;
+import com.app.eoProject.model.Payment;
 import com.app.eoProject.model.Student;
 import com.app.eoProject.service.DocumentServiceInterface;
 import com.app.eoProject.service.ExamInstanceServiceInterface;
@@ -98,7 +102,25 @@ public class StudentController {
 		}
 		student.setExamInstance(examInstances);
 		
+		Set<Payment> payments = new HashSet<Payment>();
+		for(PaymentDTO payDTO : studentDTO.getPayments()) {
+			for(Payment pay : paymentService.findAll()) {
+				if(payDTO.getId() == pay.getId()) {
+					payments.add(pay);
+				}
+			}
+		}
+		student.setPayments(payments);
 		
+		Set<Document> documents = new HashSet<Document>();
+		for(DocumentDTO docDTO : studentDTO.getDocuments()) {
+			for(Document doc : docService.findAll()) {
+				if(docDTO.getId() == doc.getId()) {
+					documents.add(doc);
+				}
+			}
+		}
+		student.setDocuments(documents);
 		
 
 			
@@ -120,7 +142,37 @@ public class StudentController {
 		student.setFirstName(studentDTO.getCardNumber());
 		student.setExamSpecification(examSpecService.findOne(studentDTO.getExamSpecification().getId()));
 		student.setUser(userService.findOne(studentDTO.getUser().getId()));
-//		student.setExamInstance(examInstService.);+++++++++++++++++++++++++
+		Set<ExamInstance> examInstances = new HashSet<ExamInstance>();
+		for(ExamInstanceDTO eiDTO : studentDTO.getExamInstances()) {
+			for(ExamInstance ei : examInstService.findAll()) {
+				if(eiDTO.getId() == ei.getId()) {
+					examInstances.add(ei);
+				}
+			}
+			
+			
+		}
+		student.setExamInstance(examInstances);
+		
+		Set<Payment> payments = new HashSet<Payment>();
+		for(PaymentDTO payDTO : studentDTO.getPayments()) {
+			for(Payment pay : paymentService.findAll()) {
+				if(payDTO.getId() == pay.getId()) {
+					payments.add(pay);
+				}
+			}
+		}
+		student.setPayments(payments);
+		
+		Set<Document> documents = new HashSet<Document>();
+		for(DocumentDTO docDTO : studentDTO.getDocuments()) {
+			for(Document doc : docService.findAll()) {
+				if(docDTO.getId() == doc.getId()) {
+					documents.add(doc);
+				}
+			}
+		}
+		student.setDocuments(documents);
 		
 		student = studentService.save(student);
 		
