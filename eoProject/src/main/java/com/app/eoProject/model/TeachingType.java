@@ -34,12 +34,19 @@ public class TeachingType {
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "teaching")
 	private Set<Teaching> teaching = new HashSet<Teaching>();
 
-	public TeachingType(Long id, String name, String code, TeachingTypeEnum teachingType) {
+	
+
+	public TeachingType() {
+		super();
+	}
+
+	public TeachingType(Long id, String name, String code, TeachingTypeEnum teachingType, Set<Teaching> teaching) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.code = code;
 		this.teachingType = teachingType;
+		this.teaching = teaching;
 	}
 
 	public Long getId() {
@@ -73,5 +80,13 @@ public class TeachingType {
 
 	public void setTeachingType(TeachingTypeEnum teachingType) {
 		this.teachingType = teachingType;
+	}
+
+	public Set<Teaching> getTeaching() {
+		return teaching;
+	}
+
+	public void setTeaching(Set<Teaching> teaching) {
+		this.teaching = teaching;
 	}
 }
