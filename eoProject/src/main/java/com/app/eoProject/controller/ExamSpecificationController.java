@@ -17,16 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.eoProject.dto.DocumentDTO;
-import com.app.eoProject.dto.ExamInstanceDTO;
+
 import com.app.eoProject.dto.ExamSpecificationDTO;
-import com.app.eoProject.dto.PaymentDTO;
-import com.app.eoProject.dto.StudentDTO;
-import com.app.eoProject.model.Document;
-import com.app.eoProject.model.ExamInstance;
 import com.app.eoProject.model.ExamSpecification;
-import com.app.eoProject.model.Payment;
-import com.app.eoProject.model.Student;
 import com.app.eoProject.service.CourseInstanceServiceInterface;
 import com.app.eoProject.service.CourseSpecificationServiceInterface;
 import com.app.eoProject.service.DocumentServiceInterface;
@@ -38,7 +31,7 @@ import com.app.eoProject.service.TeacherServiceInterface;
 import com.app.eoProject.service.UserServiceInterface;
 
 @RestController
-@RequestMapping(value = "api/exam_controller")
+@RequestMapping(value = "api/exam_specification_controller")
 public class ExamSpecificationController {
 
 	@Autowired
@@ -47,14 +40,6 @@ public class ExamSpecificationController {
 	private ExamSpecificationServiceInterface examSpecService;
 	@Autowired
 	private ExamInstanceServiceInterface examInstanceService;
-	@Autowired
-	private UserServiceInterface userService;
-	@Autowired
-	private PaymentServiceInterface paymentService;
-	@Autowired
-	private TeacherServiceInterface teacherService;
-	@Autowired
-	private DocumentServiceInterface docService;
 	@Autowired
 	private CourseSpecificationServiceInterface courseSpecService;
 	@Autowired
