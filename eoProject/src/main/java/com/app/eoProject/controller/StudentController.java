@@ -85,8 +85,8 @@ public class StudentController {
 		Student student = new Student();
 		
 		student.setFirstName(studentDTO.getFirstName());
-		student.setFirstName(studentDTO.getLastName());
-		student.setFirstName(studentDTO.getCardNumber());
+		student.setLastName(studentDTO.getLastName());
+		student.setCardNumber(studentDTO.getCardNumber());
 		student.setExamSpecification(examSpecService.findOne(studentDTO.getExamSpecification().getId()));
 		student.setUser(userService.findOne(studentDTO.getUser().getId()));
 
@@ -138,8 +138,8 @@ public class StudentController {
 		}
 		
 		student.setFirstName(studentDTO.getFirstName());
-		student.setFirstName(studentDTO.getLastName());
-		student.setFirstName(studentDTO.getCardNumber());
+		student.setLastName(studentDTO.getLastName());
+		student.setCardNumber(studentDTO.getCardNumber());
 		student.setExamSpecification(examSpecService.findOne(studentDTO.getExamSpecification().getId()));
 		student.setUser(userService.findOne(studentDTO.getUser().getId()));
 		Set<ExamInstance> examInstances = new HashSet<ExamInstance>();
