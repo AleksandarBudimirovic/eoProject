@@ -92,11 +92,12 @@ public class StudentController {
 
 		Set<ExamInstance> examInstances = new HashSet<ExamInstance>();
 		for(ExamInstanceDTO eiDTO : studentDTO.getExamInstances()) {
-			for(ExamInstance ei : examInstService.findAll()) {
-				if(eiDTO.getId() == ei.getId()) {
-					examInstances.add(ei);
-				}
-			}
+			examInstances.add(examInstService.findOne(eiDTO.getId()));
+//			for(ExamInstance ei : examInstService.findAll()) {
+//				if(eiDTO.getId() == ei.getId()) {
+//					examInstances.add(ei);
+//				}
+//			}
 			
 			
 		}
@@ -104,21 +105,23 @@ public class StudentController {
 		
 		Set<Payment> payments = new HashSet<Payment>();
 		for(PaymentDTO payDTO : studentDTO.getPayments()) {
-			for(Payment pay : paymentService.findAll()) {
-				if(payDTO.getId() == pay.getId()) {
-					payments.add(pay);
-				}
-			}
+			payments.add(paymentService.findOne(payDTO.getId()));
+//			for(Payment pay : paymentService.findAll()) {
+//				if(payDTO.getId() == pay.getId()) {
+//					payments.add(pay);
+//				}
+//			}
 		}
 		student.setPayments(payments);
 		
 		Set<Document> documents = new HashSet<Document>();
 		for(DocumentDTO docDTO : studentDTO.getDocuments()) {
-			for(Document doc : docService.findAll()) {
-				if(docDTO.getId() == doc.getId()) {
-					documents.add(doc);
-				}
-			}
+			documents.add(docService.findOne(docDTO.getId()));
+//			for(Document doc : docService.findAll()) {
+//				if(docDTO.getId() == doc.getId()) {
+//					documents.add(doc);
+//				}
+//			}
 		}
 		student.setDocuments(documents);
 		
@@ -142,13 +145,15 @@ public class StudentController {
 		student.setCardNumber(studentDTO.getCardNumber());
 		student.setExamSpecification(examSpecService.findOne(studentDTO.getExamSpecification().getId()));
 		student.setUser(userService.findOne(studentDTO.getUser().getId()));
+		
 		Set<ExamInstance> examInstances = new HashSet<ExamInstance>();
 		for(ExamInstanceDTO eiDTO : studentDTO.getExamInstances()) {
-			for(ExamInstance ei : examInstService.findAll()) {
-				if(eiDTO.getId() == ei.getId()) {
-					examInstances.add(ei);
-				}
-			}
+			examInstances.add(examInstService.findOne(eiDTO.getId()));
+//			for(ExamInstance ei : examInstService.findAll()) {
+//				if(eiDTO.getId() == ei.getId()) {
+//					examInstances.add(ei);
+//				}
+//			}
 			
 			
 		}
@@ -156,21 +161,23 @@ public class StudentController {
 		
 		Set<Payment> payments = new HashSet<Payment>();
 		for(PaymentDTO payDTO : studentDTO.getPayments()) {
-			for(Payment pay : paymentService.findAll()) {
-				if(payDTO.getId() == pay.getId()) {
-					payments.add(pay);
-				}
-			}
+			payments.add(paymentService.findOne(payDTO.getId()));
+//			for(Payment pay : paymentService.findAll()) {
+//				if(payDTO.getId() == pay.getId()) {
+//					payments.add(pay);
+//				}
+//			}
 		}
 		student.setPayments(payments);
 		
 		Set<Document> documents = new HashSet<Document>();
 		for(DocumentDTO docDTO : studentDTO.getDocuments()) {
-			for(Document doc : docService.findAll()) {
-				if(docDTO.getId() == doc.getId()) {
-					documents.add(doc);
-				}
-			}
+			documents.add(docService.findOne(docDTO.getId()));
+//			for(Document doc : docService.findAll()) {
+//				if(docDTO.getId() == doc.getId()) {
+//					documents.add(doc);
+//				}
+//			}
 		}
 		student.setDocuments(documents);
 		

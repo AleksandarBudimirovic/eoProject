@@ -79,11 +79,12 @@ public class AccountController {
 
 			Set<Payment> payments = new HashSet<Payment>();
 			for(PaymentDTO pDTO : accountDTO.getPayments()) {
-				for(Payment pi : paymentService.findAll()) {
-					if(pDTO.getId() == pi.getId()) {
-						payments.add(pi);
-					}
-				}
+				payments.add(paymentService.findOne(pDTO.getId()));
+//				for(Payment pi : paymentService.findAll()) {
+//					if(pDTO.getId() == pi.getId()) {
+//						payments.add(pi);
+//					}
+//				}
 				
 				
 			}
@@ -114,11 +115,12 @@ public class AccountController {
 
 			Set<Payment> payments = new HashSet<Payment>();
 			for(PaymentDTO pDTO : accountDTO.getPayments()) {
-				for(Payment pi : paymentService.findAll()) {
-					if(pDTO.getId() == pi.getId()) {
-						payments.add(pi);
-					}
-				}
+				payments.add(paymentService.findOne(pDTO.getId()));
+//				for(Payment pi : paymentService.findAll()) {
+//					if(pDTO.getId() == pi.getId()) {
+//						payments.add(pi);
+//					}
+//				}
 				
 				
 			}

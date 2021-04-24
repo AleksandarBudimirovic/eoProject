@@ -74,11 +74,12 @@ public class TeachingTypeController {
 		
 		Set<Teaching> teaching = new HashSet<Teaching>();
 		for(TeachingDTO tiDTO : teachingTypeDTO.getTeachings()) {
-			for(Teaching ei : teachingService.findAll()) {
-				if(tiDTO.getId() == ei.getId()) {
-					teaching.add(ei);
-				}
-			}
+			teaching.add(teachingService.findOne(tiDTO.getId()));
+//			for(Teaching ei : teachingService.findAll()) {
+//				if(tiDTO.getId() == ei.getId()) {
+//					teaching.add(ei);
+//				}
+//			}
 			
 			
 		}
@@ -104,11 +105,12 @@ public class TeachingTypeController {
 		
 		Set<Teaching> teaching = new HashSet<Teaching>();
 		for(TeachingDTO tiDTO : teachingTypeDTO.getTeachings()) {
-			for(Teaching ei : teachingService.findAll()) {
-				if(tiDTO.getId() == ei.getId()) {
-					teaching.add(ei);
-				}
-			}
+			teaching.add(teachingService.findOne(tiDTO.getId()));
+//			for(Teaching ei : teachingService.findAll()) {
+//				if(tiDTO.getId() == ei.getId()) {
+//					teaching.add(ei);
+//				}
+//			}
 			
 			
 		}

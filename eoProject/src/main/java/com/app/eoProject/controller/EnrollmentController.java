@@ -79,11 +79,12 @@ public class EnrollmentController {
 
 		Set<CourseInstance> courseInstances = new HashSet<CourseInstance>();
 		for(CourseInstanceDTO ciDTO : enrollmentDTO.getCourseInstanceDTO()) {
-			for(CourseInstance ci : courseInstanceService.findAll()) {
-				if(ciDTO.getId() == ci.getId()) {
-					courseInstances.add(ci);
-				}
-			}
+			courseInstances.add(courseInstanceService.findOne(ciDTO.getId()));
+//			for(CourseInstance ci : courseInstanceService.findAll()) {
+//				if(ciDTO.getId() == ci.getId()) {
+//					courseInstances.add(ci);
+//				}
+//			}
 		}
 		enrollment.setCourseInstance(courseInstances);
 		
@@ -110,11 +111,12 @@ public class EnrollmentController {
 
 		Set<CourseInstance> courseInstances = new HashSet<CourseInstance>();
 		for(CourseInstanceDTO ciDTO : enrollmentDTO.getCourseInstanceDTO()) {
-			for(CourseInstance ci : courseInstanceService.findAll()) {
-				if(ciDTO.getId() == ci.getId()) {
-					courseInstances.add(ci);
-				}
-			}
+			courseInstances.add(courseInstanceService.findOne(ciDTO.getId()));
+//			for(CourseInstance ci : courseInstanceService.findAll()) {
+//				if(ciDTO.getId() == ci.getId()) {
+//					courseInstances.add(ci);
+//				}
+//			}
 		}
 		enrollment.setCourseInstance(courseInstances);
 		

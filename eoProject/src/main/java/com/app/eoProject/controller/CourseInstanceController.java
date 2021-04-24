@@ -107,11 +107,12 @@ public class CourseInstanceController {
 		
 		Set<CourseSpecification> courseSpecifications = new HashSet<CourseSpecification>();
 		for(CourseSpecificationDTO csDTO : courseInstanceDTO.getCourseSpecification()) {
-			for(CourseSpecification cs : courseSpecService.findAll()) {
-				if(csDTO.getId() == cs.getId()) {
-					courseSpecifications.add(cs);
-				}
-			}
+			courseSpecifications.add(courseSpecService.findOne(csDTO.getId()));
+//			for(CourseSpecification cs : courseSpecService.findAll()) {
+//				if(csDTO.getId() == cs.getId()) {
+//					courseSpecifications.add(cs);
+//				}
+//			}
 			
 			
 		}
@@ -141,11 +142,12 @@ public class CourseInstanceController {
 		
 		Set<CourseSpecification> courseSpecifications = new HashSet<CourseSpecification>();
 		for(CourseSpecificationDTO csDTO : courseInstanceDTO.getCourseSpecification()) {
-			for(CourseSpecification cs : courseSpecService.findAll()) {
-				if(csDTO.getId() == cs.getId()) {
-					courseSpecifications.add(cs);
-				}
-			}
+			courseSpecifications.add(courseSpecService.findOne(csDTO.getId()));
+//			for(CourseSpecification cs : courseSpecService.findAll()) {
+//				if(csDTO.getId() == cs.getId()) {
+//					courseSpecifications.add(cs);
+//				}
+//			}
 			
 			
 		}
