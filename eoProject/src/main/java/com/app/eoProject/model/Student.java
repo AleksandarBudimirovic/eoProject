@@ -57,6 +57,10 @@ public class Student {
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment", referencedColumnName = "payment_id")
 	private Payment payment;
+	
+	@ManyToOne
+	@JoinColumn(name="exam_instance_link", referencedColumnName="exam_instance_id", nullable=true)
+	private Student student;
 
 
 	public Student(Long id, String firstName, String lastName, String cardNumber,  Set<Document> documents,

@@ -37,31 +37,40 @@ public class ExamInstance {
 	@JoinColumn(name="student", referencedColumnName="student_id", nullable=true)
 	private Student student;
 	
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
+	private Set<Student> studentList = new HashSet<Student>();
+	
 	@Column(name = "points_scored", unique = false, nullable = false)
 	private Double pointsScored;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher", referencedColumnName = "teacher_id")
 	private Teacher teacher;
+
+	
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "student")
+	private Set<Student> students = new HashSet<Student>();
 	
 	@ManyToOne
-	@JoinColumn(name="examSpecification", referencedColumnName="examSpecification_id", nullable=true)
+	@JoinColumn(name="exam_specification", referencedColumnName="exam_specification_id", nullable=true)
 	private ExamSpecification examSpecification;
 
-	public ExamInstance() {
-		super();
-	}
-
-	public ExamInstance(Long id, Date startDate, Date endDate, Student student, Double pointsScored, Teacher teacher,
-			ExamSpecification examSpecification) {
+	public ExamInstance(Long id, Date startDate, Date endDate, Student student, Set<Student> studentList,
+			Double pointsScored, Teacher teacher, Set<Student> students, ExamSpecification examSpecification) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.student = student;
+		this.studentList = studentList;
 		this.pointsScored = pointsScored;
 		this.teacher = teacher;
+		this.students = students;
 		this.examSpecification = examSpecification;
+	}
+
+	public ExamInstance() {
+		super();
 	}
 
 	public Long getId() {
@@ -96,6 +105,14 @@ public class ExamInstance {
 		this.student = student;
 	}
 
+	public Set<Student> getStudentList() {
+		return studentList;
+	}
+
+	public void setStudentList(Set<Student> studentList) {
+		this.studentList = studentList;
+	}
+
 	public Double getPointsScored() {
 		return pointsScored;
 	}
@@ -112,6 +129,14 @@ public class ExamInstance {
 		this.teacher = teacher;
 	}
 
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
+
 	public ExamSpecification getExamSpecification() {
 		return examSpecification;
 	}
@@ -119,7 +144,7 @@ public class ExamInstance {
 	public void setExamSpecification(ExamSpecification examSpecification) {
 		this.examSpecification = examSpecification;
 	}
-	
+
 	
 	
 	

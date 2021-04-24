@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.app.eoProject.dto.ExamInstanceDTO;
 import com.app.eoProject.dto.ExamSpecificationDTO;
+import com.app.eoProject.model.ExamInstance;
 import com.app.eoProject.model.ExamSpecification;
 import com.app.eoProject.service.CourseInstanceServiceInterface;
 import com.app.eoProject.service.CourseSpecificationServiceInterface;
@@ -80,9 +81,14 @@ public class ExamSpecificationController {
 		
 		examSpecification.setExamScoreMax(examSpecificationDTO.getExamScoreMax());
 		examSpecification.setDate(examSpecificationDTO.getDate());
-		examSpecification.setExamInstance(examInstanceService.findOne(examSpecificationDTO.getExamInstance().getId()));
+//		examSpecification.setExamInstance(examInstanceService.findOne(examSpecificationDTO.getExamInstance().getId()));
 		examSpecification.setStudent(studentService.findOne(examSpecificationDTO.getStudent().getId()));
 		
+		Set<ExamInstance> examInstances = new HashSet<ExamInstance>();
+		for(ExamInstanceDTO eiDTO : examSpecificationDTO.getExamInstances()) {
+			examInstances.add(examInstanceService.findOne(eiDTO.getId()));
+		}
+		examSpecification.setExamInstances(examInstances);
 
 		examSpecification = examSpecService.save(examSpecification);
 		return new ResponseEntity<ExamSpecificationDTO>(new ExamSpecificationDTO(examSpecification), HttpStatus.CREATED);	
@@ -99,10 +105,15 @@ public class ExamSpecificationController {
 		
 		examSpecification.setExamScoreMax(examSpecificationDTO.getExamScoreMax());
 		examSpecification.setDate(examSpecificationDTO.getDate());
-		examSpecification.setExamInstance(examInstanceService.findOne(examSpecificationDTO.getExamInstance().getId()));
+//		examSpecification.setExamInstances(examInstanceService.findAll(examSpecificationDTO.getExamInstance().getId()));
 		examSpecification.setStudent(studentService.findOne(examSpecificationDTO.getStudent().getId()));
 		
-
+		Set<ExamInstance> examInstances = new HashSet<ExamInstance>();
+		for(ExamInstanceDTO eiDTO : examSpecificationDTO.getExamInstances()) {
+			examInstances.add(examInstanceService.findOne(eiDTO.getId()));
+		}
+		examSpecification.setExamInstances(examInstances);
+		
 		examSpecification = examSpecService.save(examSpecification);
 		
 
