@@ -60,5 +60,17 @@ public class StudentService implements StudentServiceInterface{
 	}
 	
 	
+	//da vidi listu polozenih ispita
+	public List<ExamInstance> polozeniIspiti(Student student){
+		List<ExamInstance> polozeniIspiti = new ArrayList<ExamInstance>();
+		for(ExamInstance e : student.getExamInstance()) {
+			if(e.getPointsScored() > 51) {
+				polozeniIspiti.add(e);
+			}
+		}
+		return polozeniIspiti;
+	}
+	
+	
 	
 }
